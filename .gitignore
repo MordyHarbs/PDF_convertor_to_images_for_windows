@@ -2,3 +2,5 @@
 build/
 dist/
 PDF_Converter.spec
+.vs_code/
+__pycache__/
