@@ -114,11 +114,29 @@ if __name__ == "__main__":
         except Exception as e:
             messagebox.showerror("שגיאה", f"אירעה שגיאה:\n{e}")
 
+    def select_file_and_delete_original():
+        file_path = filedialog.askopenfilename(
+            title="בחר קובץ PDF",
+            filetypes=[("PDF files", "*.pdf")],
+        )
+        if not file_path:
+            return
+        input_path = Path(file_path)
+        try:
+            output_path = rasterize_pdf_to_images_pdf(input_path)
+            input_path.unlink()  # delete the original file
+            messagebox.showinfo("הצלחה", f"הקובץ נוצר והמקור נמחק:\n{output_path}")
+        except Exception as e:
+            messagebox.showerror("שגיאה", f"אירעה שגיאה:\n{e}")
+
     root = tk.Tk()
     root.title("PDF Rasterizer")
     root.geometry("200x100")
 
-    btn = tk.Button(root, text="בחר קובץ", command=select_file, font=("Arial", 14))
-    btn.pack(expand=True)
+    btn_copy = tk.Button(root, text="צור עותק לקובץ", command=select_file, font=("Arial", 14))
+    btn_copy.pack(expand=True, pady=5)
+
+    btn_move = tk.Button(root, text="צור קובץ ומחק קובץ מקור", command=select_file_and_delete_original, font=("Arial", 14))
+    btn_move.pack(expand=True, pady=5)
 
     root.mainloop()
