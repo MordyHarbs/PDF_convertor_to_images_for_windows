@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# command to compile:
+# pyinstaller --onefile --noconsole --name "PDF_Converter" --hidden-import fitz --hidden-import PyMuPDF --hidden-import PIL --collect-all fitz --collect-all PyMuPDF --collect-all PIL --collect-submodules fitz app.py
+
+
 import argparse
 import sys
 from pathlib import Path
