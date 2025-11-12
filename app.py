@@ -126,6 +126,7 @@ if __name__ == "__main__":
             output_path = rasterize_pdf_to_images_pdf(input_path)
             input_path.unlink()  # delete the original file
             output_path.rename(input_path)  # overwrite original name
+            output_path = input_path  # since we renamed it
             messagebox.showinfo("הצלחה", f"הקובץ נוצר והמקור נמחק:\n{output_path}")
         except Exception as e:
             messagebox.showerror("שגיאה", f"אירעה שגיאה:\n{e}")
